@@ -10,3 +10,18 @@ $TempDir = "C:\WINDOWS\Temp"
 
 #netcat location locally to use for sending out the data to the forensic workstation
 $NetCatPath = "C:\netcat"
+
+
+#COLLECT DATA
+#TODO
+
+
+#COMBINDE DATA
+#TODO
+
+
+
+#TRANSFER TO FORENSIC WORKSTATION
+
+#netcat to transfer combined data
+#TODO
