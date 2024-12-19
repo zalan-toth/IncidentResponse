@@ -9,7 +9,7 @@ $RemoteHost = "192.168.0.0"
 $RemotePort = 2222
 
 #temporary location to put data before transfering to forensic workstation
-$TempDir = "C:\WINDOWS\Temp"
+$TempDir = "C:\WINDOWS\Temp\IR"
 
 #netcat location locally to use for sending out the data to the forensic workstation
 $NetCatPath = "C:\netcat"
@@ -26,15 +26,21 @@ Get-Date | Out-File "$TempDir\SysDate.txt"
 
 
 # =======================================================================================
-#COMBINDE DATA
+# COMBINE DATA
 # =======================================================================================
 #TODO
 
 
 
 # =======================================================================================
-#TRANSFER TO FORENSIC WORKSTATION
+# TRANSFER TO FORENSIC WORKSTATION
 # =======================================================================================
 
 #netcat to transfer combined data
+#TODO
+
+
+# =======================================================================================
+# CLEANUP TEMPORARY FILES
+# =======================================================================================
 #TODO
