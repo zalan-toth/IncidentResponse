@@ -25,13 +25,17 @@ Get-Date | Out-File "$TempDir\SysDate.txt"
 #check open ports
 netstat -an | Out-File "$TempDir\OpenPorts.txt"
 
+#map executables to open ports
+netstat -abno | Out-File "$TempDir\MappedPorts.txt"
+
 #TODO 
 
 
 # =======================================================================================
 # COMBINE DATA
 # =======================================================================================
-#TODO
+$CombinedData = "$TempDir\FullData.txt"
+#TODO combine all files
 
 
 
@@ -40,6 +44,7 @@ netstat -an | Out-File "$TempDir\OpenPorts.txt"
 # =======================================================================================
 
 #netcat to transfer combined data
+Get-Content $CombinedData | & $NetCatPath $RemoteHost $RemotePort
 #TODO
 
 
