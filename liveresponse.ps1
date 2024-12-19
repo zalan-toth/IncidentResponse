@@ -22,6 +22,9 @@ $NetCatPath = "C:\netcat"
 #Capture date and time and put it into a file in the temporary dir
 Get-Date | Out-File "$TempDir\SysDate.txt"
 
+#check open ports
+netstat -an | Out-File "$TempDir\OpenPorts.txt"
+
 #TODO 
 
 
