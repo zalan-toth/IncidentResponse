@@ -47,6 +47,9 @@ PsService | Out-File "$TempDir\Services.txt"
 #Open Files
 PsFile | Out-File "$TempDir\OpenFiles.txt"
 
+#Get scheduled tasks
+Get-ScheduledTask | Out-File "$TempDir\ScheduledTasks.txt"
+
 #TODO Memory dumps 
 
 
