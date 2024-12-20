@@ -12,8 +12,14 @@ $RemotePort = 2222
 $TempDir = "C:\WINDOWS\Temp\IR"
 
 #netcat location locally to use for sending out the data to the forensic workstation
-$NetCatPath = "C:\netcat"
+$NetCatPath = "C:\Trusted\NetCat\t_nc.exe"
 
+#Other locations
+$ProcDump = "C:\Trusted\ProcDump\ProcDump.exe"
+$PsLoggedOn = "C:\Trusted\PSTools\PsLoggedOn.exe"
+$PsFile = "C:\Trusted\PSTools\PsFile.exe"
+$PsList = "C:\Trusted\PSTools\PsList.exe"
+$PsService = "C:\Trusted\PSTools\PsService.exe"
 
 # =======================================================================================
 # COLLECT DATA
@@ -33,19 +39,19 @@ netstat -abno | Out-File "$TempDir\MappedPorts.txt"
 nbtstat -c | Out-File "$TempDir\NetBIOSCache.txt"
 
 #Logged on users
-PsLoggedOn | Out-File "$TempDir\LoggedOnUsers.txt"
+$PsLoggedOn | Out-File "$TempDir\LoggedOnUsers.txt"
 
 #Routing table
 netstat -rn | Out-File "$TempDir\RoutingTable.txt"
 
 #Running processes
-PsList | Out-File "$TempDir\Processes.txt"
+$PsList | Out-File "$TempDir\Processes.txt"
 
 #Running services
-PsService | Out-File "$TempDir\Services.txt"
+$PsService | Out-File "$TempDir\Services.txt"
 
 #Open Files
-PsFile | Out-File "$TempDir\OpenFiles.txt"
+$PsFile | Out-File "$TempDir\OpenFiles.txt"
 
 #Get scheduled tasks
 Get-ScheduledTask | Out-File "$TempDir\ScheduledTasks.txt"
