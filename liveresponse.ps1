@@ -23,20 +23,41 @@ $NetCatPath = "C:\netcat"
 Get-Date | Out-File "$TempDir\SysDate.txt"
 
 #check open ports
+Get-NetTCPConnection | Out-File "$TempDir\NetworkConnections.txt"
 netstat -an | Out-File "$TempDir\OpenPorts.txt"
 
 #map executables to open ports
 netstat -abno | Out-File "$TempDir\MappedPorts.txt"
 
-#TODO 
+#netbios name cache
+nbtstat -c | Out-File "$TempDir\NetBIOSCache.txt"
+
+#Logged on users
+PsLoggedOn | Out-File "$TempDir\LoggedOnUsers.txt"
+
+#Routing table
+netstat -rn | Out-File "$TempDir\RoutingTable.txt"
+
+#Running processes
+PsList | Out-File "$TempDir\Processes.txt"
+
+#Running services
+PsService | Out-File "$TempDir\Services.txt"
+
+#Open Files
+PsFile | Out-File "$TempDir\OpenFiles.txt"
+
+#TODO Memory dumps 
 
 
 # =======================================================================================
 # COMBINE DATA
 # =======================================================================================
-$CombinedData = "$TempDir\FullData.txt"
+$CombinedData = "$TempDir\Final\FullData.txt"
 #TODO combine all files
-
+Get-ChildItem -Path $TempDir -Filter *.txt | ForEach-Object {
+    Get-Content $_.FullName | Add-Content -Path $CombinedData
+}
 
 
 # =======================================================================================
