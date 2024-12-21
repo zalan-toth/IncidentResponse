@@ -41,19 +41,19 @@ netstat -abno | Out-File "$TempDir\MappedPorts.txt"
 nbtstat -c | Out-File "$TempDir\NetBIOSCache.txt"
 
 #Logged on users
-$PsLoggedOn | Out-File "$TempDir\LoggedOnUsers.txt"
+& $PsLoggedOn | Out-File "$TempDir\LoggedOnUsers.txt"
 
 #Routing table
 netstat -rn | Out-File "$TempDir\RoutingTable.txt"
 
 #Running processes
-$PsList | Out-File "$TempDir\Processes.txt"
+& $PsList | Out-File "$TempDir\Processes.txt"
 
 #Running services
-$PsService | Out-File "$TempDir\Services.txt"
+& $PsService | Out-File "$TempDir\Services.txt"
 
 #Open Files
-$PsFile | Out-File "$TempDir\OpenFiles.txt"
+& $PsFile | Out-File "$TempDir\OpenFiles.txt"
 
 #Get scheduled tasks
 Get-ScheduledTask | Out-File "$TempDir\ScheduledTasks.txt"
@@ -71,7 +71,7 @@ foreach ($Process in $Processes) {
 
 
 #System version and patch level
-$PsInfo | Out-File "$TempDir\PsInfo.txt"
+& $PsInfo | Out-File "$TempDir\PsInfo.txt"
 
 # =======================================================================================
 # COMBINE DATA
