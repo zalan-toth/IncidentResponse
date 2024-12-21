@@ -62,16 +62,16 @@ Get-ScheduledTask | Out-File "$TempDir\ScheduledTasks.txt"
 $Processes = Get-Process
 foreach ($Process in $Processes) {
     $DumpFile = "$TempDir\$($Process.Id)_$($Process.ProcessName).dmp"
-    & $ProcDump -ma $Process.Id $DumpFile 
+    & $ProcDump -ma $Process.Id $DumpFile 2>&1 | Out-Null
 }
 
 #NON VOLATILE
 #timestamp
 #dir
 
+
 #System version and patch level
 $PsInfo | Out-File "$TempDir\PsInfo.txt"
-
 
 # =======================================================================================
 # COMBINE DATA
