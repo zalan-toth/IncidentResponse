@@ -22,6 +22,7 @@ $PsList = "C:\Trusted\PSTools\PsList.exe"
 $PsService = "C:\Trusted\PSTools\PsService.exe"
 
 $PsInfo = "C:\Trusted\PSTools\PsInfo.exe"
+$PsLogList = "C:\Trusted\PSTools\PsLogList.exe"
 
 # =======================================================================================
 # COLLECT DATA
@@ -66,12 +67,17 @@ foreach ($Process in $Processes) {
 }
 
 #NON VOLATILE
-#timestamp
-#dir
-
+#timestamp 
+Get-ChildItem | Out-File "$TempDir\Dir.txt"
+#Get-ChildItem is the same as dir
 
 #System version and patch level
 & $PsInfo | Out-File "$TempDir\PsInfo.txt"
+
+#System logs
+& $PsLogList -s -x security | Out-File "$TempDir\SystemEvents.txt"
+
+#Get registry data https://learn.microsoft.com/en-us/windows/win32/wmisdk/obtaining-registry-data 
 
 # =======================================================================================
 # COMBINE DATA
@@ -89,7 +95,6 @@ Get-ChildItem -Path $TempDir -Filter *.txt | ForEach-Object {
 
 #netcat to transfer combined data
 Get-Content $CombinedData | & $NetCatPath $RemoteHost $RemotePort
-#TODO
 
 
 # =======================================================================================
